@@ -16,6 +16,7 @@ use Redirect;
 
 class Users extends BaseController
 {
+<<<<<<< HEAD
   //Dahab
 
   public function logs (request $request)
@@ -35,4 +36,40 @@ class Users extends BaseController
       echo "please check your email or password";
      }
   }
+=======
+	//Mina
+  public function Adduser(Request $request)
+  {
+    $rules = array(
+      'email'=>'unique:users',
+      'pass'=>'min:6',
+      'cpassword'=>'same:pass',
+      'group'=>'required|in:Admin,User',
+    );
+    $validator = Validator::make(Input::all(), $rules);
+    if($validator->fails()){
+      return Redirect::back()
+                ->withErrors($validator) // send back all errors to the add user
+                ->withInput();
+    }
+    else {
+      $user = new user();
+      $user->name = $request->input('name');
+      $user->email = $request->input('email');
+      $user->password = $request->input('pass');
+      $user->group = $request->input('group');
+      if($user->group == 'Admin')
+      {
+        $user->group = true;
+      }
+      else
+      {
+        $user->group = false;
+      }
+      $user->save();
+      return redirect('users');
+    }
+  }
+  //Mina
+>>>>>>> 95637facc6f31f11680fbefcd3f73a9d956e2be9
 }
