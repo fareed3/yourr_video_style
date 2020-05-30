@@ -16,7 +16,7 @@ use Redirect;
 
 class Users extends BaseController
 {
-<<<<<<< HEAD
+	
   //Dahab
 
   public function logs (request $request)
@@ -36,8 +36,10 @@ class Users extends BaseController
       echo "please check your email or password";
      }
   }
-=======
-	//Mina
+  //Dahab
+  
+  //Mina
+		// Task 1 (Add User)
   public function Adduser(Request $request)
   {
     $rules = array(
@@ -70,6 +72,21 @@ class Users extends BaseController
       return redirect('users');
     }
   }
+      // Task 2 (Show All Users)
+  public function alluser()
+  {
+    $all = user::all();
+    return view('back-end.User.users',compact('all'));
+  }
+	 // Task 3 (Delete User)
+  public function deleteuser($id)
+  {
+    user::destroy($id);
+    return redirect('users');
+  }
+  
+	 
+  
   //Mina
->>>>>>> 95637facc6f31f11680fbefcd3f73a9d956e2be9
+  
 }
