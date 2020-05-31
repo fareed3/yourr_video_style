@@ -113,8 +113,34 @@ public function resetpass (request $request)
     user::destroy($id);
     return redirect('users');
   }
+    // Task 4 (Update User)
+  public function edit($id)
+  {
+    $oneuser = user::where('id',$id)->first();
+    return view('back-end.User.edituser',compact('oneuser'));
+  }
 
-
+  public function edituser1(Request $request ,$id)
+  {
+    $rules = array(
+      'pass'=>'min:6',
+      'cpassword'=>'same:pass'
+    );
+    $validator = Validator::make(Input::all(), $rules);
+    if($validator->fails()){
+      return Redirect::back()
+                ->withErrors($validator) // send back all errors to the add user
+                ->withInput();
+    }
+    else {
+      $user1 = user::find($id);
+      $user1->name = $request->input('name');
+      $user1->email = $request->input('email');
+      $user1->password = $request->input('pass');
+      $user1->save();
+      return redirect('users');
+    }
+  }
 
   //Mina
 
