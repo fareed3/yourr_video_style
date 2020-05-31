@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 
-class Videos extends Controller
+class Videos extends BackEndController
 {
-    
+      public function __construct(Video $model) {
+        parent::__construct($model);
+    }
     
     
    public function store(Store $request)
