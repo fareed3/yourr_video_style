@@ -16,7 +16,7 @@ use Redirect;
 
 class Users extends BaseController
 {
-	
+
   //Dahab
 
   public function logs (request $request)
@@ -36,8 +36,37 @@ class Users extends BaseController
       echo "please check your email or password";
      }
   }
+public function resetpass (request $request)
+  {
+	  $rules = array(
+      'password1'=>'min:6',
+      'password2'=>'same:password1'
+    );
+    $validator = Validator::make(Input::all(), $rules);
+    if($validator->fails()){
+      return Redirect::back()
+                ->withErrors($validator) // send back all errors to the add user
+                ->withInput();
+    }
+    else {
+		$email = $request->input('email');
+		$password = $request->input('pass');
+		$pass1 = $request->input('password1');
+		$pass2 = $request->input('password2');
+		$Data = DB::select('select id from users where email=? and password=?' , [$email,$password]);
+		if (count($Data)&&$pass1==$pass2)
+		{
+		 DB::update ('UPDATE users SET password =? WHERE email=? and password=?' , [$pass1,$email,$password]);
+		 return redirect('users');
+		}
+		else {
+		 echo "please enter correct data";
+		}
+    }
+  }
+
   //Dahab
-  
+
   //Mina
 		// Task 1 (Add User)
   public function Adduser(Request $request)
@@ -84,9 +113,9 @@ class Users extends BaseController
     user::destroy($id);
     return redirect('users');
   }
-  
-	 
-  
+
+
+
   //Mina
-  
+
 }
