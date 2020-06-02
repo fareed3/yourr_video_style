@@ -141,7 +141,43 @@ public function resetpass (request $request)
       return redirect('users');
     }
   }
+  
+     // Task 5 ( Dashboard )
+  public function dashboard()
+  {
+    // The Count Rows For Primary Tables
+    $videos = Video::get()->count();
+    $categories = Category::all();
+    $users = User::get()->count();
+    $statistics = array('users' => $users,'categories'=>count($categories) ,'videos' =>$videos  );
+    $statisticsicons = array(0=> 'user1', 1 => 'categories', 2=> 'videos');
 
+    //Count Videos For each Category
+    $vc = array();
+    //Categoris Names To Show In Dashboard With Counts
+    $allcategories = array();
+    $allcategoriesicon = array();
+    foreach ($categories as $key => $value)
+    {
+      array_push($allcategories,$value->name);
+      array_push($allcategoriesicon,$value->icon);
+      $videoscat = Video::WHERE('Category_id','=',$value->id)->get();
+      array_push($vc,count($videoscat));
+    }
+    //Three Part
+    $myvideos = Video::distinct()->get(['User_id']);
+    $users = array();
+    $usersVideos = array();
+    foreach ($myvideos as $key => $value)
+    {
+      $name = User::where('id','=',$value->User_id)->first();
+      array_push($users , $name);
+      $countViduser = Video::where('User_id','=',$value->User_id)->get();
+      array_push($usersVideos,count($countViduser));
+    }
+
+    return view('back-end.Admin.dashboard',compact('allcategories','allcategoriesicon','statistics','statisticsicons','vc','users','usersVideos'));
+  }
   //Mina
 
 }
