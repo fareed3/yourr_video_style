@@ -32,6 +32,21 @@ class BackEndController extends Controller
         return view("back-end.$RouteName.index", compact('users','TableName','RouteName'));
     }
     
+	 public function edit($id)
+    {
+        
+        $row= $this->model;
+        
+        $row=$row->FindOrFail($id);
+        
+        $RouteName= $this->view_file_name();
+       
+        $TableName= $this->controller_prular_name();
+        
+        
+         
+        return view("back-end.".$RouteName.".edit", compact("row","TableName","RouteName"));
+    }
     
     
     public function create(){
