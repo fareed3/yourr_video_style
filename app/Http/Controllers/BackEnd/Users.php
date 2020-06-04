@@ -178,6 +178,50 @@ public function resetpass (request $request)
 
     return view('back-end.Admin.dashboard',compact('allcategories','allcategoriesicon','statistics','statisticsicons','vc','users','usersVideos'));
   }
+  
+     //Task 6 ( Search Video )
+  public function searchvideo(Request $request)
+  {
+    $token = $request->input('Search');
+    $getvideosname = Video::where('name', 'LIKE','%'.$token.'%')->get();
+    $getvideosdes  = Video::where('des', 'LIKE','%'.$token.'%')->get();
+    if(count($getvideosdes) == 0)
+    {
+      $finalreslt = $getvideosname;
+    }
+    else if(count($getvideosname) == 0){
+      $finalreslt = $getvideosdes;
+    }
+    else {
+      if($getvideosdes >= $getvideosname)
+      {
+        $i = $getvideosname;
+        $finalreslt = $getvideosdes;
+      }
+      else {
+        $i = $getvideosdes;
+        $finalreslt = $getvideosname;
+      }
+
+      foreach ($i as $key => $value1) {
+        $i = 0;
+        foreach ($finalreslt as $key => $value) {
+          if($value->id == $value1->id)
+          {
+            $i++;
+          }
+        }
+        $vid = $value1;
+        if($i == 0)
+        {
+          array_push($finalreslt,$vid);
+        }
+      }
+    }
+
+    return view('back-end.Admin.resultsearch',compact('finalreslt'));
+  }
+  
   //Mina
 
 }
