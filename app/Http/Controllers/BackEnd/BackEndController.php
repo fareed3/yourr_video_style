@@ -63,7 +63,12 @@ class BackEndController extends Controller
     
    
     
-  
+public function destroy($id)
+    {
+        $this->model->FindOrFail($id)->delete();
+        $RouteName= $this->view_file_name();
+        return redirect()->route("$RouteName.index");
+    }  
 
 
    
