@@ -32,4 +32,19 @@ class Categories extends Controller
 
         return $filename;
     }
-  }  
+  }
+
+public function index()
+  {
+    $categories = Category::all();
+    return view('back-end.Admin.allcategory',compact('categories'));
+  }
+
+ 
+ public function delete($id)
+ {
+  Category::where('id',$id)->delete();
+  return redirect('/allcategory');
+}
+
+
