@@ -33,6 +33,30 @@ class Categories extends Controller
         return $filename;
     }
   }
+  
+  public function allcategory()
+    {
+      $all = Category::all();
+      $catvideos = Video::where('Category_id','=','1')->get();
+      $category = Category::where('id','=','1')->first();
+      $type = $category->name;
+      return view('back-end.Admin.viewcat',compact('all','catvideos','type'));
+    }
+
+    public function myvideos($id)
+    {
+      // Get Videos For Secific Category
+      $catvideos = Video::where('Category_id','=',$id)->get();
+
+      // Get Category Name
+      $cateName = Category::where('id','=',$id)->first();
+      $type = $cateName->name;
+
+      // To Show All Category
+      $all = Category::all();
+
+      return view('back-end.Admin.viewcat',compact('all','catvideos','type'));
+    }
 
 public function index()
   {
