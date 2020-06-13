@@ -5,8 +5,10 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  
+  
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/pro_image/youtube.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     @yield('title')
@@ -22,8 +24,21 @@
   <link href="/assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body class="">
+<body class="" >
   <div class="wrapper ">
+      
+      
+@section('activebutton')
+<?php
+$GLOBALS['isactive1'] = '';
+$GLOBALS['isactive2'] = '';
+$GLOBALS['isactive3'] = '';
+$GLOBALS['isactive4'] = 'active';
+
+ ?>
+      
+@endsection
+
       
 @include('back-end.layout.slidebar')
     <div class="main-panel" id="main-panel">

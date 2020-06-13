@@ -1,4 +1,4 @@
-   <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-toggle">
@@ -8,7 +8,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">{{$nav_title}}</a>
+            <a class="navbar-brand" href="#pablo">User Profile</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -16,16 +16,18 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
+            <form action="/resultsearch" method="post" autocomplete="on">
+              {{csrf_field()}}
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
+                <input type="text" value="" class="form-control" autocomplete="on" placeholder="Search Video..." name="Search">
                 <div class="input-group-append">
                   <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                    <a class="now-ui-icons ui-1_zoom-bold" href=""></a>
                   </div>
                 </div>
               </div>
             </form>
+
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
@@ -48,14 +50,21 @@
                   <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="now-ui-icons users_single-02"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Account</span>
+                    <span class="d-lg-none d-md-block">Some Actions</span>
                   </p>
                 </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#" style="color:red; font-size:18px;">{{session('em')}}</a>
+                  <hr>
+                  <a class="dropdown-item" href="resetpass">Reset Password</a>
+                  <a class="dropdown-item" href="/">Logout</a>
+                </div>
               </li>
+
             </ul>
           </div>
         </div>

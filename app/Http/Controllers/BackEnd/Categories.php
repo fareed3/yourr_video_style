@@ -32,7 +32,7 @@ class Categories extends Controller
 
         return $filename;
     }
-  }
+  
   
   public function allcategory()
     {
@@ -71,4 +71,41 @@ public function index()
   return redirect('/allcategory');
 }
 
+public function edit($id)
+{
+	$category=Category::find($id);
+	if (empty($category)){
+		return redirect('/allcategory');
+	}
+	return view('back-end.Admin.updatecategory' , compact('category'));
+}
 
+
+public function update( Request $request , $id){
+	$category=Category::find($id);
+	$category->update([
+		'name'=>$request->get('name'),
+
+		'des'=>$request->get('des'),
+
+                'icon'=> $this->uploade_icons($request)
+	]);
+			return  redirect('allcategory');
+}
+
+
+
+	public function showvideo($id)
+    {
+      $pc = false;
+      $pVideo = Video::where('id',$id)->first();
+      $url = $pVideo->Link;
+      if(is_null($url))
+      {
+        $pc = true;
+        $url = $pVideo->src;
+      }
+      return view('back-end.Admin.showvideo',compact('url','pc'));
+    }
+	
+}

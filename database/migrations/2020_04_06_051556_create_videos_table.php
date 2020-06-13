@@ -19,18 +19,18 @@ class CreateVideosTable extends Migration
             $table->increments('id');
               
             $table->String("name");
-            
-            
-            
+                     
+           
             $table->text("des");
             
-            $table->String("Link");
+            $table->String("Link")->nullable();
+
                     
              $table->boolean("publish")->default(1);       
             
             $table->integer("User_id");
             
-			$table->String("src");
+            $table->String("src")->nullable();
 			
             $table->integer("Category_id");
             

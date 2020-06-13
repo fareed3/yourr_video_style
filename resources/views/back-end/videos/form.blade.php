@@ -46,7 +46,7 @@
                    
                     <div class="col-md-6 px-1">
                       <div class="form-group">
-                          <label><b>Link</b></label>
+                          <label><b>youtube Link <small>(if you want upload video from your PC make this field empty)</small></b></label>
                        
                         <input type="text" name="{{$input}}" value="{{isset($row)? $row->$input : ""}}"  class="form-control" placeholder="{{$input}}" >
                       </div>
@@ -142,7 +142,7 @@
                    <div class="row">
                     <div class="col-md-6 px-1">
                       
-                        <label><b>Select Video</b></label>
+                        <label><b>Select Video  <small>(if you want upload video from youtube make this field empty)</small></b></label>
                         <br>
                         <br>
                         <input type="file" name="{{$input}}" value="{{isset($row)?$row->$input:""}}"   class="form-control">

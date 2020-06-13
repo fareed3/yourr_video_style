@@ -13,9 +13,11 @@
 
 Route::prefix('admin')->middleware('admin')->namespace('BackEnd')->group(function(){
 
-    Route::resource("videos","Videos",["except"=>["show","delete"]]);
+  //  Route::resource("videos","Videos",["except"=>["show","delete"]]);
 
 });
+Route::resource("videos","BackEnd\Videos",["except"=>["show","delete"]]);
+   
 
 //Emad
 

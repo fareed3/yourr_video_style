@@ -30,10 +30,10 @@
      -->
       <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-          CT
+          
         </a>
         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+          Your Video Style
         </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -58,7 +58,7 @@
             </a>
           </li >
           <li class="{{$GLOBALS['isactive4']}}">
-            <a href="http://127.0.0.1:8000/admin\videos">
+            <a href="{{route('videos.index')}}">
               <i class="now-ui-icons design_app"></i>
               <p>Videos</p>
             </a>

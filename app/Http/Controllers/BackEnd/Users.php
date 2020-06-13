@@ -23,7 +23,7 @@ class Users extends BaseController
   {
     $email = $request->input('email');
     $password = $request->input('password');
-    $data = DB::table('users')->where('email', $email)        where('password',$password)->first();
+    $data = DB::table('users')->where('email', $email)->where('password',$password)->first();
      if($data)
      {
        $userid = $data->id;
